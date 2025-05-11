@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Show the Operation Sign</title>
   <style>
     body {
@@ -16,7 +16,7 @@
       margin: 20px auto;
       border: 2px solid #333;
       background: #ffe08a;
-      width: 200px;
+      width: 300px;
     }
     .button {
       font-size: 1.5rem;
@@ -52,14 +52,45 @@
 
   <script>
     const cards = [
+      // Addition
       { keyword: "Add", symbol: "+" },
       { keyword: "Plus", symbol: "+" },
+      { keyword: "Sum", symbol: "+" },
+      { keyword: "Increased by", symbol: "+" },
+      { keyword: "Total", symbol: "+" },
+      { keyword: "More than", symbol: "+" },
+      { keyword: "Gain", symbol: "+" },
+      { keyword: "Combined", symbol: "+" },
+      { keyword: "Altogether", symbol: "+" },
+      // Subtraction
       { keyword: "Subtract", symbol: "-" },
       { keyword: "Minus", symbol: "-" },
+      { keyword: "Less", symbol: "-" },
+      { keyword: "Difference", symbol: "-" },
+      { keyword: "Decreased by", symbol: "-" },
+      { keyword: "Take away", symbol: "-" },
+      { keyword: "Fewer than", symbol: "-" },
+      { keyword: "Lost", symbol: "-" },
+      { keyword: "Deduct", symbol: "-" },
+      // Multiplication
       { keyword: "Multiply", symbol: "*" },
       { keyword: "Times", symbol: "*" },
+      { keyword: "Product", symbol: "*" },
+      { keyword: "Multiplied by", symbol: "*" },
+      { keyword: "Increased multiple", symbol: "*" },
+      { keyword: "Repeated addition", symbol: "*" },
+      { keyword: "Double", symbol: "*" },
+      { keyword: "Triple", symbol: "*" },
+      // Division
       { keyword: "Divide", symbol: "/" },
+      { keyword: "Quotient", symbol: "/" },
       { keyword: "Divided by", symbol: "/" },
+      { keyword: "Per", symbol: "/" },
+      { keyword: "Equal parts", symbol: "/" },
+      { keyword: "Split", symbol: "/" },
+      { keyword: "Half of", symbol: "/" },
+      { keyword: "Each", symbol: "/" },
+      { keyword: "Ratio", symbol: "/" },
     ];
 
     let currentCard = null;
@@ -71,6 +102,11 @@
     const scoreDisplay = document.getElementById("score");
 
     document.getElementById("startBtn").onclick = () => {
+      const playerName = document.getElementById("playerName").value.trim();
+      if (!playerName) {
+        alert("Please enter your name.");
+        return;
+      }
       score = 0;
       total = 0;
       gameArea.style.display = "block";
