@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show the Operation Sign</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f9f9f9;
+      padding: 30px;
+    }
+    #card {
+      font-size: 2rem;
+      padding: 20px;
+      margin: 20px auto;
+      border: 2px solid #333;
+      background: #ffe08a;
+      width: 200px;
+    }
+    .button {
+      font-size: 1.5rem;
+      margin: 10px;
+      padding: 15px 30px;
+      cursor: pointer;
+    }
+    #startBtn {
+      margin-top: 20px;
+    }
+    #score {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Show the Operation Sign</h1>
+  <input type="text" id="playerName" placeholder="Enter your name" />
+  <br><br>
+  <button id="startBtn">Start Game</button>
+
+  <div id="gameArea" style="display:none;">
+    <div id="card">Keyword</div>
+    <div>
+      <button class="button" onclick="submitAnswer('+')">+</button>
+      <button class="button" onclick="submitAnswer('-')">−</button>
+      <button class="button" onclick="submitAnswer('*')">×</button>
+      <button class="button" onclick="submitAnswer('/')">÷</button>
+    </div>
+    <div id="score">Score: 0 / 0</div>
+  </div>
+
+  <script>
+    const cards = [
+      { keyword: "Add", symbol: "+" },
+      { keyword: "Plus", symbol: "+" },
+      { keyword: "Subtract", symbol: "-" },
+      { keyword: "Minus", symbol: "-" },
+      { keyword: "Multiply", symbol: "*" },
+      { keyword: "Times", symbol: "*" },
+      { keyword: "Divide", symbol: "/" },
+      { keyword: "Divided by", symbol: "/" },
+    ];
+
+    let currentCard = null;
+    let score = 0;
+    let total = 0;
+
+    const cardElement = document.getElementById("card");
+    const gameArea = document.getElementById("gameArea");
+    const scoreDisplay = document.getElementById("score");
+
+    document.getElementById("startBtn").onclick = () => {
+      score = 0;
+      total = 0;
+      gameArea.style.display = "block";
+      nextCard();
+    };
+
+    function nextCard() {
+      currentCard = cards[Math.floor(Math.random() * cards.length)];
+      cardElement.textContent = currentCard.keyword;
+      total++;
+      speak(currentCard.keyword);
+    }
+
+    function submitAnswer(answer) {
+      if (answer === currentCard.symbol) score++;
+      scoreDisplay.textContent = `Score: ${score} / ${total}`;
+      nextCard();
+    }
+
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>
